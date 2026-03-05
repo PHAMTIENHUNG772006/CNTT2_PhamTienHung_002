@@ -1,0 +1,50 @@
+import java.util.*;
+
+public class Cau3 {
+    public static void main(String[] args) {
+        String[] regex1 = {"(","[","{"};
+        String regex2 = "])}";
+
+        Scanner scanner = new Scanner(System.in);
+
+
+        System.out.println("Mời nhập chuỗi : ");
+
+        String input = scanner.nextLine();
+
+        if (input == ""){
+            System.out.println("Lỗi : chuỗi  không được rỗng");
+        }
+        List<String> strings = new ArrayList<>(Arrays.asList(input.split("")));
+
+        Stack<String> strings1 = new Stack<>();
+
+        for (String string : strings){
+            for (String regex : regex1){
+                if (string.equals(regex)){
+                    strings1.push(string);
+                }
+
+                if (string.contains(regex2)){
+                    String temp = strings1.peek();
+                    if (temp.contains(string)){
+                        strings1.pop();
+                    }
+                }
+            }
+        }
+
+        for (String string : strings1){
+            System.out.println(string);
+        }
+
+
+        if (strings1.isEmpty()){
+            System.out.println("Hợp lệ");
+        }else {
+            System.out.println("Không hợp lệ");
+        }
+
+
+    }
+}
