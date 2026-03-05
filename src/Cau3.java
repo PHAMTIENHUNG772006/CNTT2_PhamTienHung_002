@@ -3,7 +3,7 @@ import java.util.*;
 public class Cau3 {
     public static void main(String[] args) {
         String[] regex1 = {"(","[","{"};
-        String regex2 = "])}";
+        String[] regex2 = {")","]","}"};
 
         Scanner scanner = new Scanner(System.in);
 
@@ -25,19 +25,24 @@ public class Cau3 {
                     strings1.push(string);
                 }
 
-                if (string.contains(regex2)){
-                    String temp = strings1.peek();
-                    if (temp.contains(string)){
-                        strings1.pop();
+
+                for (String regexTem : regex2){
+
+                    if (string.contains(regexTem)){
+                        System.out.println(string.contains(regexTem));
+                        String temp = strings1.peek();
+                        System.out.println(temp);
+                        if (!temp.equals(regexTem)){
+                            System.out.println(temp.equals(regexTem));
+                            strings1.pop();
+                        }
                     }
                 }
             }
         }
 
-        for (String string : strings1){
-            System.out.println(string);
-        }
 
+        System.out.println(strings1.size());
 
         if (strings1.isEmpty()){
             System.out.println("Hợp lệ");
